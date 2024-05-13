@@ -1,11 +1,11 @@
 "use client";
 import Icon from "@/components/ui/Icon";
 import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
+import useLatLon from "@/util/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
 
 const Weather = () => {
-  const lat = "1.2899175";
-  const lon = "103.8519072";
+  const { lat, lon } = useLatLon();
   const { data } = useQuery({
     queryKey: ["weather", lat, lon],
     queryFn: () => getCurrentWeather(lat, lon),
