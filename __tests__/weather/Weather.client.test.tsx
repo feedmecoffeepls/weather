@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import Weather from "@/components/weather/currentWeather/Weather.client";
+import Weather from "@/components/weather/current-weather/Weather.client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { weatherMock } from "@/mocks/weather";
 
@@ -41,7 +41,7 @@ describe("Weather Component", () => {
   });
 
   it("should display the correct temperature", async () => {
-    const expectedTemp = `${weatherMock.main.temp / 10} °C`;
+    const expectedTemp = `${(weatherMock.main.temp / 10).toFixed(2)} °C`;
     await waitFor(() => {
       expect(screen.getByText(expectedTemp)).toBeInTheDocument();
     });
