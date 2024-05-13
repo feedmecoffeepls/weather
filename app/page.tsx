@@ -1,9 +1,9 @@
-import Image from "next/image";
+import CurrentWeather from "@/components/weather/currentWeather/CurrentWeather.server";
 
 export default function Home() {
   return (
     <main className="p-4">
-      <div>Current Weather</div>
+      <CurrentWeather />
     </main>
   );
 }

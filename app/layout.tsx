@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import getQueryClient from "@/util/tanstack/getQueryClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +17,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = getQueryClient();
+  const dehydratedState = dehydrate(queryClient);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Providers>
+        <HydrationBoundary state={dehydratedState}>
+          <body className={inter.className}>{children}</body>
+        </HydrationBoundary>
+      </Providers>
     </html>
   );
 }

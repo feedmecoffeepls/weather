@@ -1,0 +1,19 @@
+import Image from "next/image";
+
+interface IconProps {
+  iconId: string;
+  alt: string;
+  iconSize?: number;
+}
+
+const Icon = ({ iconId, alt, iconSize = 64 }: IconProps) => {
+  const base_url = "https://openweathermap.org/img/wn/";
+  const size = ".png";
+  const constructed_url = `${base_url}${iconId}${size}`;
+  console.log(constructed_url);
+  return (
+    <Image src={constructed_url} alt={alt} width={iconSize} height={iconSize} />
+  );
+};
+
+export default Icon;
