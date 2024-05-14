@@ -51,7 +51,7 @@ const History = () => {
         {history.map((item, key) => (
           <div
             key={"history-" + key}
-            className="flex items-center justify-between"
+            className="flex items-center justify-between pb-2"
           >
             <p className="font-bold">
               {item.name}, {item.country}

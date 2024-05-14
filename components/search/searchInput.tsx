@@ -59,7 +59,7 @@ const SearchInput = () => {
           {"Search"}
         </Button>
       </div>
-      {error && <p className="my-2">Invalid country or city</p>}
+      {error && <p className="my-2 text-rose-500">Invalid country or city</p>}
     </div>
   );
 };
