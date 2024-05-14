@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import constructURL from "@/util/search/constructURL";
 
-const SearchInput = () => {
+const SearchForm = () => {
   const [searchParam, setSearchParam] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,23 +45,32 @@ const SearchInput = () => {
   };
   return (
     <div className="mb-12">
-      <div className="flex">
-        <Input
-          onChange={(e) => setSearchParam(e.target.value)}
-          className="mr-4"
-          placeholder="Search country or city here..."
-        />
-        <Button
-          onClick={onSubmit}
-          disabled={searchParam === "" || loading ? true : false}
+      <div>
+        <form
+          className="flex"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit();
+          }}
         >
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {"Search"}
-        </Button>
+          <Input
+            onChange={(e) => setSearchParam(e.target.value)}
+            className="mr-4"
+            placeholder="Search country or city here..."
+          />
+          <Button
+            onClick={onSubmit}
+            disabled={searchParam === "" || loading ? true : false}
+            type="submit"
+          >
+            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {"Search"}
+          </Button>
+        </form>
       </div>
       {error && <p className="my-2 text-rose-500">Invalid country or city</p>}
     </div>
   );
 };
 
-export default SearchInput;
+export default SearchForm;

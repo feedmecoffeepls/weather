@@ -1,10 +1,10 @@
 import History from "./history";
-import SearchInput from "./searchInput";
+import SearchForm from "./searchForm";
 
 const Search = () => {
   return (
     <div>
-      <SearchInput />
+      <SearchForm />
       <History />
     </div>
   );
