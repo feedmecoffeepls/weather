@@ -29,8 +29,6 @@ const Weather = () => {
   const { weather: allWeather, main: atmosphere, wind } = data;
   const weather = allWeather[0];
 
-  console.log(data);
-
   return (
     <div className="w-full px-8 py-4 shadow rounded-lg bg-slate-50">
       <div>

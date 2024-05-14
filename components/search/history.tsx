@@ -22,7 +22,6 @@ const History = () => {
     const parsedHistory =
       typeof rawHistory === "string" ? JSON.parse(rawHistory) : [];
     setHistory(Array.isArray(parsedHistory) ? parsedHistory : []);
-    console.log(parsedHistory);
   }, []);
 
   const handleDelete = (item: Location) => {
