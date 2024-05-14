@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
 import getLocations from "@/server/actions/geo/getLocations";
@@ -49,6 +49,7 @@ const SearchInput = () => {
         <Input
           onChange={(e) => setSearchParam(e.target.value)}
           className="mr-4"
+          placeholder="Search country or city here..."
         />
         <Button
           onClick={onSubmit}

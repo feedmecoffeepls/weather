@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { Button } from "../ui/Button";
 import Link from "next/link";
+import { Search, Trash } from "lucide-react";
+import constructURL from "@/util/search/constructURL";
 
 interface Location {
   name: string;
@@ -42,24 +44,36 @@ const History = () => {
   };
 
   return (
-    <div>
-      {history.map((item, key) => (
-        <div key={"history-" + key} className="flex">
-          <p>{item.name}</p>
-          <Link href="/">
-            <Button variant="outline" size="icon">
-              S
-            </Button>
-          </Link>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => handleDelete(item)}
+    <div className="max-w-screen-sm mx-auto">
+      <p className="font-bold mb-4">Search History</p>
+      <div className="bg-slate-50 rounded-lg shadow p-8">
+        {!history || (history.length === 0 && "No history to display")}
+        {history.map((item, key) => (
+          <div
+            key={"history-" + key}
+            className="flex items-center justify-between"
           >
-            X
-          </Button>
-        </div>
-      ))}
+            <p className="font-bold">
+              {item.name}, {item.country}
+            </p>
+            <div>
+              <Link href={constructURL(item)}>
+                <Button variant="outline" size="icon">
+                  <Search style={{ height: "20px" }} />
+                </Button>
+              </Link>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleDelete(item)}
+                className="ml-4"
+              >
+                <Trash style={{ height: "20px" }} />
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

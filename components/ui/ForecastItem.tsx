@@ -7,7 +7,7 @@ const ForecastItem = ({ item }: ForecastItemProps) => {
     <div className="flex items-center justify-between">
       <div className="flex items-center justify-between w-full sm:w-auto">
         <div>
-          <p className="font-bold">
+          <p className="font-bold w-20">
             {new Date(item?.dt * 1000).toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
