@@ -18,26 +18,29 @@ const Weather = () => {
   const { list } = data;
 
   return (
-    <div>
-      {Object.entries(list).map(([date, items]) => (
-        <div key={"date-" + date} className="pt-8">
-          <p>
-            {new Date(date).toLocaleDateString() ===
-            new Date().toLocaleDateString()
-              ? "Today"
-              : new Date(date).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "long",
-                })}
-          </p>
-          {items.map((item: any, key: number) => (
-            <ForecastItem
-              item={item}
-              key={`forecast-${date}-${key}-${item?.dt}`}
-            />
-          ))}
-        </div>
-      ))}
+    <div className="w-full my-12">
+      <p className="font-bold mb-4">5-day Forecast (3 Hours)</p>
+      <div className="px-8 shadow rounded-lg bg-slate-50">
+        {Object.entries(list).map(([date, items]) => (
+          <div key={"date-" + date} className="pt-6">
+            <p className="text-slate-600 mb-1">
+              {new Date(date).toLocaleDateString() ===
+              new Date().toLocaleDateString()
+                ? "Today"
+                : new Date(date).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                  })}
+            </p>
+            {items.map((item: any, key: number) => (
+              <ForecastItem
+                item={item}
+                key={`forecast-${date}-${key}-${item?.dt}`}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
