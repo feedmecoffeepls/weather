@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
-  const { data } = useQuery<z.infer<typeof weatherResponseSchema>>({
+  const { data } = useQuery({
     queryKey: ["weather", lat, lon],
     queryFn: () => getCurrentWeather(lat, lon),
   });
