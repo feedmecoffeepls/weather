@@ -18,7 +18,13 @@ const Weather = () => {
 
   return (
     <div className="w-full my-12">
-      <p className="font-bold mb-4">5-day Forecast (3 Hours)</p>
+      <div className="mb-4">
+        <p className="font-bold ">5-day Forecast (3 Hours)</p>
+        <p>
+          Time is in browser time (
+          {Intl.DateTimeFormat().resolvedOptions().timeZone})
+        </p>
+      </div>
       <div className="px-8 shadow rounded-lg bg-slate-50">
         {Object.entries(list).map(([date, items]) => (
           <div key={"date-" + date} className="pt-6">
