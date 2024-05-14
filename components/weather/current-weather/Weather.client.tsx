@@ -3,7 +3,7 @@ import Icon from "@/components/ui/Icon";
 import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
 import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
-import { LoaderCircle } from "lucide-react";
+import { ArrowUp, LoaderCircle } from "lucide-react";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
@@ -47,7 +47,13 @@ const Weather = () => {
           </div>
           <div>
             <p className="text-sm text-slate-600">Winds</p>
-            <p className="font-medium">{wind?.speed} m/s</p>
+            <div className="flex items-center">
+              <ArrowUp
+                className="origin-center "
+                style={{ transform: "rotate(" + wind.deg + "deg)" }}
+              />
+              <p className="font-medium ml-2">{wind?.speed} m/s</p>
+            </div>
           </div>
           <div>
             <p className="text-sm text-slate-600">Visibility</p>
