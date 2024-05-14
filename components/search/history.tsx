@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import Link from "next/link";
 
 interface Location {
