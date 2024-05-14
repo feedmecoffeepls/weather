@@ -3,6 +3,7 @@ import Icon from "@/components/ui/Icon";
 import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
 import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
+import { LoaderCircle } from "lucide-react";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
@@ -11,7 +12,7 @@ const Weather = () => {
     queryFn: () => getCurrentWeather(lat, lon),
   });
 
-  if (!data) return <p>Weather not found</p>;
+  if (!data) return <LoaderCircle className="animate-spinner" />;
 
   const { weather: allWeather, main: atmosphere, wind } = data;
   const weather = allWeather[0];

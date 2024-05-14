@@ -3,7 +3,7 @@ import ForecastItem from "@/components/ui/ForecastItem";
 import getForecast from "@/server/actions/weather/getForecast";
 import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
+import { LoaderCircle } from "lucide-react";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
@@ -12,8 +12,7 @@ const Weather = () => {
     queryFn: () => getForecast(lat, lon),
   });
 
-  if (!data) return <p>Forecast not found</p>;
-  console.log(data);
+  if (!data) return <LoaderCircle className="animate-spinner" />;
 
   const { list } = data;
 
