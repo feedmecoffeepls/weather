@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { groupForecasts } from "@/util/weather/groupForecasts";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
@@ -25,7 +26,9 @@ const Weather = () => {
       </div>
     );
 
-  const { list } = data;
+  const { list: rawList } = data;
+
+  const list = groupForecasts(rawList);
 
   return (
     <div className="w-full my-12">
