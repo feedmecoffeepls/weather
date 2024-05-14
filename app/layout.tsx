@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/util/tanstack/getQueryClient";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,17 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <HydrationBoundary state={dehydratedState}>
-          <body className={inter.className}>{children}</body>
+          <body className={inter.className}>
+            <div>
+              <div className="container mx-auto flex justify-between p-4">
+                <div>Location</div>
+                <Link href="/search">
+                  <div>Search</div>
+                </Link>
+              </div>
+            </div>
+            <div className="container mx-auto p-4">{children}</div>
+          </body>
         </HydrationBoundary>
       </Providers>
     </html>
