@@ -6,6 +6,7 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/util/tanstack/getQueryClient";
 import Link from "next/link";
 import TopMenu from "@/components/ui/TopMenu";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +26,12 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <HydrationBoundary state={dehydratedState}>
-          <body className={inter.className}>
-            <TopMenu />
-            <div className="container mx-auto p-4">{children}</div>
-          </body>
+          <Suspense>
+            <body className={inter.className}>
+              <TopMenu />
+              <div className="container mx-auto p-4">{children}</div>
+            </body>
+          </Suspense>
         </HydrationBoundary>
       </Providers>
     </html>
