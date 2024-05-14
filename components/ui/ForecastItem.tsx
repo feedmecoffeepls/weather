@@ -7,14 +7,14 @@ const ForecastItem = ({ item }: ForecastItemProps) => {
     <div className="flex items-center justify-between">
       <div className="flex items-center justify-between w-full sm:w-auto">
         <div>
-          <p className="font-bold w-20">
+          <p className="font-bold w-16 sm:w-20 ">
             {new Date(item?.dt * 1000).toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
             })}
           </p>
         </div>
-        <div className="ml-4 mr-2">
+        <div className="ml-0 mr-0 sm:ml-4 sm:mr-2">
           <Icon iconId={weather?.icon} alt={weather?.description} />
         </div>
         <div>

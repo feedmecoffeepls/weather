@@ -29,11 +29,11 @@ const Weather = () => {
         </p>
       </div>
       <div className="flex flex-wrap lg:flex-nowrap pt-4">
-        <div className="flex w-full justify-center lg:justify-start my-4">
+        <div className="flex w-full justify-center lg:justify-start my-4 flex-wrap sm:flex-nowrap">
           <div>
             <Icon iconId={weather?.icon} alt={weather?.description} />
           </div>
-          <div className="ml-12 text-center lg:text-left">
+          <div className="ml-0 sm:ml-12 text-center lg:text-left">
             <p className="text-2xl font-medium">
               {(atmosphere?.temp / 10).toFixed(2)} °C
             </p>

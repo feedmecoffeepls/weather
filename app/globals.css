@@ -73,6 +73,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  p {
+    @apply text-xs sm:text-sm md:text-base;
+  }
 }
 
 body {
