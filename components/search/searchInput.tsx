@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { Input } from "../ui/Input";
 
 import getLocations from "@/server/actions/geo/getLocations";
 import secureLocalStorage from "react-secure-storage";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import constructURL from "@/util/search/constructURL";
 
 const SearchInput = () => {
   const [searchParam, setSearchParam] = useState("");
@@ -19,7 +20,7 @@ const SearchInput = () => {
 
     const response = await getLocations(searchParam.toLowerCase());
 
-    let data, error;
+    let data;
     if ("data" in response && response.data.length > 0) {
       data = response.data;
       const timestampedData = data.map((location) => ({
@@ -35,11 +36,7 @@ const SearchInput = () => {
         "searchHistory",
         JSON.stringify(existingHistory)
       );
-      const url = `/?location=${encodeURIComponent(
-        searchParam
-      )}&name=${encodeURIComponent(data[0]?.name)}&lat=${data[0]?.lat}&lon=${
-        data[0]?.lon
-      }`;
+      const url = constructURL(data[0]);
       router.push(url);
     } else {
       setError(true);

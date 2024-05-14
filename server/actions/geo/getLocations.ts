@@ -1,5 +1,6 @@
 "use server";
 
+import { locationSchema, locationsResponseSchema } from '@/types/location';
 import ky from 'ky';
 import { z } from 'zod';
 
@@ -17,16 +18,3 @@ const getLocations = async (location: string): Promise<z.infer<typeof locationsR
 };
 
 export default getLocations;
-
-const locationSchema = z.object({
-  name: z.string(),
-  lat: z.number(),
-  lon: z.number(),
-  country: z.string(),
-  local_names: z.record(z.string()).optional(),
-});
-
-const locationsResponseSchema = z.union([
-  z.object({ data: z.array(locationSchema) }),
-  z.object({ error: z.boolean() })
-]);
