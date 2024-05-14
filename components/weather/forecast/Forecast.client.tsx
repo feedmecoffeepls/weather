@@ -1,7 +1,7 @@
 "use client";
 import ForecastItem from "@/components/ui/ForecastItem";
 import getForecast from "@/server/actions/weather/getForecast";
-import useLatLon from "@/util/weather/useLatLon";
+import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 

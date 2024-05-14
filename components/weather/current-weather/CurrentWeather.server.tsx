@@ -2,15 +2,14 @@ import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
 import { QueryClient } from "@tanstack/react-query";
 import Weather from "./Weather.client";
 
-const CurrentWeather = async () => {
-  const lat = "1.2899175";
-  const lon = "103.8519072";
+import { DEFAULT_LAT, DEFAULT_LON } from "@/constants/defaults";
 
+const CurrentWeather = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["weather", lat, lon],
-    queryFn: () => getCurrentWeather(lat, lon),
+    queryKey: ["weather", DEFAULT_LAT, DEFAULT_LON],
+    queryFn: () => getCurrentWeather(DEFAULT_LAT, DEFAULT_LON),
   });
 
   return <Weather />;

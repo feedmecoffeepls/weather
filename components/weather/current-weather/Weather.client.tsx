@@ -1,7 +1,7 @@
 "use client";
 import Icon from "@/components/ui/Icon";
 import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
-import useLatLon from "@/util/weather/useLatLon";
+import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
 
 const Weather = () => {
