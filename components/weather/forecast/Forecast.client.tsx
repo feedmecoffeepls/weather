@@ -4,6 +4,8 @@ import getForecast from "@/server/actions/weather/getForecast";
 import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
@@ -12,7 +14,16 @@ const Weather = () => {
     queryFn: () => getForecast(lat, lon),
   });
 
-  if (!data) return <LoaderCircle className="animate-spinner" />;
+  if (!data) return <LoaderCircle className="animate-spin" />;
+  if (!data || "error" in data)
+    return (
+      <div className="w-full px-8 py-12 shadow rounded-lg bg-slate-50 text-center mt-20">
+        <p className="mb-4">Could not fetch forecast</p>
+        <Link href="/search">
+          <Button>Try again</Button>
+        </Link>
+      </div>
+    );
 
   const { list } = data;
 

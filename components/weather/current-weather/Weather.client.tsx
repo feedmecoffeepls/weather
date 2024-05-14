@@ -4,15 +4,27 @@ import getCurrentWeather from "@/server/actions/weather/getCurrentWeather";
 import useLatLon from "@/hooks/weather/useLatLon";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUp, LoaderCircle } from "lucide-react";
+import { weatherResponseSchema } from "@/types/weather";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 const Weather = () => {
   const { lat, lon } = useLatLon();
-  const { data } = useQuery({
+  const { data } = useQuery<z.infer<typeof weatherResponseSchema>>({
     queryKey: ["weather", lat, lon],
     queryFn: () => getCurrentWeather(lat, lon),
   });
 
-  if (!data) return <LoaderCircle className="animate-spinner" />;
+  if (!data) return <LoaderCircle className="animate-spin" />;
+  if (!data || "error" in data)
+    return (
+      <div className="w-full px-8 py-12 shadow rounded-lg bg-slate-50 text-center">
+        <p className="mb-4">Could not fetch current weather</p>
+        <Link href="/search">
+          <Button>Try again</Button>
+        </Link>
+      </div>
+    );
 
   const { weather: allWeather, main: atmosphere, wind } = data;
   const weather = allWeather[0];

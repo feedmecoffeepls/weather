@@ -44,3 +44,8 @@ export const weatherSchema = z.object({
     cod: z.number().optional(),
   });
   
+export const weatherResponseSchema = z.union([
+    weatherSchema,
+    z.object({ error: z.boolean() })
+  ]);
+  

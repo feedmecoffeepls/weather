@@ -55,3 +55,10 @@ export const forecastSchema = z.object({
       sunset: z.number().optional(),
     })
   });
+
+  export const forecastResponseSchema = z.union([
+    forecastSchema.extend({
+      list: z.record(z.array(forecastSchema.shape.list.element))
+    }),
+    z.object({ error: z.boolean() }).optional()
+  ]);
