@@ -2,9 +2,15 @@
 import { useSearchParams } from "next/navigation";
 
 const useLatLon = () => {
+  const defaultLat = "1.2899175";
+  const defaultLon = "103.8519072";
   const searchParams = useSearchParams();
-  const lat = searchParams.get("lat") || "1.2899175";
-  const lon = searchParams.get("lon") || "103.8519072";
+  let lat = defaultLat 
+  let lon = defaultLon
+  if (searchParams) {
+    lat = searchParams.get("lat") || defaultLat;
+    lon = searchParams.get("lon") || defaultLon ;
+  }
   return { lat, lon };
 }
 
