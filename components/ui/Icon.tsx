@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
 
 interface IconProps {
   iconId: string;
