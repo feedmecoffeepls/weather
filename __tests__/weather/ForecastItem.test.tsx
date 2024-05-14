@@ -22,7 +22,7 @@ describe("ForecastItem Component", () => {
 
   it("should render the correct time", () => {
     render(<ForecastItem item={mockItem} />);
-    const timeElement = screen.getByText("08:00 AM");
+    const timeElement = screen.getByText("08:00");
     expect(timeElement).toBeInTheDocument();
   });
 

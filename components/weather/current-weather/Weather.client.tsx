@@ -17,6 +17,8 @@ const Weather = () => {
   const { weather: allWeather, main: atmosphere, wind } = data;
   const weather = allWeather[0];
 
+  console.log(data);
+
   return (
     <div className="w-full px-8 py-4 shadow rounded-lg bg-slate-50">
       <div>
@@ -35,7 +37,7 @@ const Weather = () => {
           </div>
           <div className="ml-0 sm:ml-12 text-center lg:text-left">
             <p className="text-2xl font-medium">
-              {(atmosphere?.temp / 10).toFixed(2)} °C
+              {(atmosphere?.temp).toFixed(2)} °C
             </p>
             <p className="text-slate-600">{weather?.description}</p>
           </div>

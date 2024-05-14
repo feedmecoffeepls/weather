@@ -34,7 +34,7 @@ describe("Weather Component", () => {
   });
 
   it("should display the correct temperature", async () => {
-    const expectedTemp = `${(weatherMock.main.temp / 10).toFixed(2)} °C`;
+    const expectedTemp = `${weatherMock.main.temp.toFixed(2)} °C`;
     await waitFor(() => {
       expect(screen.getByText(expectedTemp)).toBeInTheDocument();
     });

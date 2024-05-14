@@ -11,6 +11,7 @@ const ForecastItem = ({ item }: ForecastItemProps) => {
             {new Date(item?.dt * 1000).toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
+              hour12: false,
             })}
           </p>
         </div>
